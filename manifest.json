@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Netflix Subtitle Watcher",
+    "version": "1.0",
+    "description": "Watch Netflix subtitles and display them on the same page.",
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.netflix.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
