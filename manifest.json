@@ -1,11 +1,15 @@
 {
     "manifest_version": 3,
     "name": "Netflix Subtitle Watcher",
-    "version": "1.0",
-    "description": "Watch Netflix subtitles and display them on the same page.",
+    "version": "1.1",
+    "description": "Watch Netflix subtitles and search highlighted text on Jisho.org.",
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "contextMenus"
     ],
+    "background": {
+        "service_worker": "background.js"
+    },
     "content_scripts": [
         {
             "matches": [
