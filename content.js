@@ -1,4 +1,3 @@
-// Function to create a custom display for subtitles
 function createSubtitleDisplay() {
     const subtitleDisplay = document.createElement("div");
     subtitleDisplay.id = "custom-subtitle-display";
@@ -10,7 +9,7 @@ function createSubtitleDisplay() {
     subtitleDisplay.style.color = "white";
     subtitleDisplay.style.padding = "10px 20px";
     subtitleDisplay.style.borderRadius = "10px";
-    subtitleDisplay.style.fontSize = "30px";
+    subtitleDisplay.style.fontSize = "40px";
     subtitleDisplay.style.textAlign = "center";
     subtitleDisplay.style.zIndex = "9999";
     subtitleDisplay.style.cursor = "text"; // Allow text selection
