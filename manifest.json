@@ -5,7 +5,8 @@
     "description": "Watch Netflix subtitles and search highlighted text on Jisho.org.",
     "permissions": [
         "activeTab",
-        "contextMenus"
+        "contextMenus",
+        "storage"
     ],
     "background": {
         "service_worker": "background.js"
