@@ -34,8 +34,8 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const url = `https://translate.google.com/?sl=ja&tl=en&text=${query}&op=translate`;
     chrome.tabs.create({ url });
   }
-
-  if (info.menuItemId && info.selectionText) {
-    storeQuery(info.selectionText.trim())
-  }
+  // TODO:
+  // if (info.menuItemId && info.selectionText) {
+  //   storeQuery(info.selectionText.trim())
+  // }
 });
