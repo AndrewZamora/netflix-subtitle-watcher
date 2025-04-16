@@ -1,4 +1,6 @@
 import { getSubtitleContainer } from "./getSubtitleContainer";
+import { createObserver } from "./createObserver";
+import { updateSubtitleDisplay } from "./updateSubtitleDisplay";
 
 export function startSubtitleObserver() {
     return createObserver(() => {
