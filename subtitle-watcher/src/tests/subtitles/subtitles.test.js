@@ -4,6 +4,7 @@ import { updateSubtitleDisplay } from '../../subtitles/updateSubtitleDisplay';
 import { getSubtitleContainer } from '../../subtitles/getSubtitleContainer';
 import { createObserver } from '../../subtitles/createObserver';
 import { tokenizeText } from '../../subtitles/tokenizeText';
+import { hideElement } from '../../subtitles/hideElement';
 
 describe('Subtitle Functions', () => {
     let mockDocument;
@@ -54,6 +55,17 @@ describe('Subtitle Functions', () => {
         const container = getSubtitleContainer(mockQuerySelector);
         expect(container).not.toBeNull();
         expect(container.textContent).toBe('Subtitle');
+    });
+
+    test('hideElement hides element', () => {
+        const el = document.createElement('div');
+        document.body.appendChild(el);
+
+        expect(getComputedStyle(el).visibility).toBe('visible')
+
+        hideElement(el);
+
+        expect(getComputedStyle(el).visibility).toBe('hidden')
     });
 
     test('observer updates the subtitle display when new subtitles appear', () => {

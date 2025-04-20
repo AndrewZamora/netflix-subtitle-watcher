@@ -11,5 +11,8 @@ export default defineConfig({
         entryFileNames: '[name].js'
       }
     }
+  },
+  test: {
+    environment: "jsdom"
   }
 })
