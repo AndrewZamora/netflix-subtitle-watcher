@@ -15,7 +15,8 @@
         {
             "matches": [
                 "*://*.netflix.com/*",
-                "*://*.amazon.co.jp/*"
+                "*://*.amazon.co.jp/*",
+                "*://*.youtube.com/*"
             ],
             "js": [
                 "content.js"
