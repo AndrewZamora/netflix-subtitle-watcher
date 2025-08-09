@@ -75,6 +75,13 @@ describe('Subtitle Functions', () => {
     });
 
     test('tokenizeText splits Japanese text', () => {
-        expect(tokenizeText('これは字幕です。')).toStrictEqual(['これ', 'は', '字幕', 'です', '。']);
+        const input = 'これは字幕です。'
+        const output = tokenizeText(input);
+        expect(output).toStrictEqual(
+            [{ segment: 'これ', index: 0, input: 'これは字幕です。', isWordLike: true },
+            { segment: 'は', index: 2, input: 'これは字幕です。', isWordLike: true },
+            { segment: '字幕', index: 3, input: 'これは字幕です。', isWordLike: true },
+            { segment: 'です', index: 5, input: 'これは字幕です。', isWordLike: true },
+            { segment: '。', index: 7, input: 'これは字幕です。', isWordLike: false }]);
     })
 });
