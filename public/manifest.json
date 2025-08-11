@@ -3,6 +3,9 @@
     "name": "Subtitle Watcher",
     "version": "1.1",
     "description": "Watch streaming subtitles and search highlighted text on Jisho.org.",
+    "host_permissions": [
+        "https://jisho.org/api/v1/search/words*"
+    ],
     "permissions": [
         "activeTab",
         "contextMenus",

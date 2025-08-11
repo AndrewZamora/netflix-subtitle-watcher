@@ -1,3 +1,5 @@
+import { lookup } from "./services/jisho/lookup";
+
 function storeQuery(query) {
   chrome.storage.sync.set({ [query]: { definition: '' } }, () => console.log("stored data"));
 }
@@ -17,6 +19,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const query = encodeURIComponent(info.selectionText.trim());
     const url = `https://jisho.org/search/${query}`;
     chrome.tabs.create({ url });
-    storeQuery(info.selectionText.trim())
+    storeQuery(info.selectionText.trim());
+    lookup(info.selectionText.trim()).then((data) => {console.log(data)})
   }
 });
