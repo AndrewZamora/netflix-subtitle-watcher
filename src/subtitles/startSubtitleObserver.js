@@ -7,14 +7,16 @@ import { hideElement } from "./hideElement";
 let listening = false;
 
 export function startSubtitleObserver() {
+    console.log("startSubtitleObserver.js")
     return createObserver(() => {
         const subtitleContainer = getSubtitleContainer();
         if (subtitleContainer) {
             updateSubtitleDisplay(subtitleContainer.textContent.trim());
             if (!listening) {
                 const subtitleDisplay = document.getElementById("custom-subtitle-display");
-                onTextSelection(subtitleDisplay, ({ selection, sentence }) => {
+                onTextSelection(subtitleDisplay, async ({ selection, sentence }) => {
                     console.log({ selection, sentence });
+                    chrome.runtime.sendMessage({selection: selection}).then((response) => console.log({response}))
                 });
                 listening = true;
             }

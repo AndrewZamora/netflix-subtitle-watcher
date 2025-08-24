@@ -1,3 +1,4 @@
+
 export async function lookup(word) {
     const url = new URL("api/v1/search/words", "https://jisho.org");
     url.searchParams.append("keyword", word);
