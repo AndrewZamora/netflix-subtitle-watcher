@@ -1,0 +1,251 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Toast notification styles */
+  --toast-gap: 12px;
+  --toast-pad: 12px 14px;
+  --toast-radius: 10px;
+  --toast-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+  --toast-bg: #1f2937;
+  /* slate-800 */
+  --toast-fg: #fff;
+  --info: #3b82f6;
+  /* blue-500 */
+  --success: #10b981;
+  /* emerald-500 */
+  --warning: #f59e0b;
+  /* amber-500 */
+  --error: #ef4444;
+  /* red-500 */
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2em #f7df1eaa);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Toast Notification Styles */
+.toast-container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  /* We will prepend() so newest is at the top */
+  align-items: stretch;
+  gap: var(--toast-gap);
+  z-index: 9999;
+  pointer-events: none;
+  /* clicks pass through unless on a toast */
+}
+
+.toast {
+  min-width: 260px;
+  max-width: min(90vw, 420px);
+  color: var(--toast-fg);
+  background: var(--toast-bg);
+  border-left: 4px solid var(--info);
+  padding: var(--toast-pad);
+  border-radius: var(--toast-radius);
+  box-shadow: var(--toast-shadow);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "title close"
+    "msg msg";
+  gap: 6px 10px;
+  pointer-events: auto;
+  /* allow interactions */
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  animation: toast-in 220ms cubic-bezier(.2, .7, .2, 1) forwards;
+}
+
+
+@keyframes toast-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+.toast.hide {
+  animation: toast-out 180ms ease forwards;
+}
+
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+
+.toast__title {
+  grid-area: title;
+  font-weight: 650;
+}
+
+.toast__msg {
+  grid-area: msg;
+  line-height: 1.35;
+  opacity: .95;
+}
+
+
+.toast__close {
+  grid-area: close;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: .8;
+}
+
+.toast__close:hover {
+  opacity: 1;
+}
+
+
+/* Accents per type */
+.toast--success {
+  border-left-color: var(--success);
+}
+
+.toast--warning {
+  border-left-color: var(--warning);
+}
+
+.toast--error {
+  border-left-color: var(--error);
+}
+
+.toast--info {
+  border-left-color: var(--info);
+}
+
+
+/* Optional progress bar */
+.toast__progress {
+  position: relative;
+  height: 3px;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, .15);
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.toast__progress>i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: currentColor;
+  opacity: .7;
+  animation: shrink linear forwards;
+}
+
+@keyframes shrink {
+  to {
+    transform: scaleX(0);
+  }
+}

@@ -15,7 +15,7 @@ export function startSubtitleObserver() {
             if (!listening) {
                 const subtitleDisplay = document.getElementById("custom-subtitle-display");
                 onTextSelection(subtitleDisplay, async ({ selection, sentence }) => {
-                    chrome.runtime.sendMessage({ selection: selection, sentence: sentence});
+                    chrome.runtime.sendMessage({ selection: selection, sentence: sentence });
                 });
                 listening = true;
             }

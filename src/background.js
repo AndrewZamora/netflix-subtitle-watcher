@@ -34,5 +34,12 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   data.selection = request.selection.trim();
   data.sentence = request.sentence.trim();
   data.timestamp = Date.now();
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    // Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use tabs.sendMessage
+    if (tabs.length > 0) {
+      chrome.tabs.sendMessage(tabs[0].id, { notification: data });
+    }
+  });
+
   storeQuery(request.selection, data);
 });
