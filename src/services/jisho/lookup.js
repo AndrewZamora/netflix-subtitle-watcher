@@ -1,11 +1,8 @@
+import { parseDefinition } from "./parseDefinition";
 
-export async function lookup(word) {
+export async function lookup(word, queue) {
     const url = new URL("api/v1/search/words", "https://jisho.org");
     url.searchParams.append("keyword", word);
-    const response = await fetch(url.toString());
-    if (response.ok) {
-        return await response.json();
-    } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    const data = await queue.add(url);
+    return parseDefinition(data);
 };

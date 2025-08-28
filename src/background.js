@@ -22,16 +22,17 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const query = encodeURIComponent(info.selectionText.trim());
     const url = `https://jisho.org/search/${query}`;
     chrome.tabs.create({ url });
-    // storeQuery(info.selectionText.trim());
-    lookup(info.selectionText.trim()).then((data) => { console.log(data) })
   }
 });
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   console.log({ request, sender, sendResponse })
-  if (request.selection) {
-    const url = new URL("api/v1/search/words", "https://jisho.org");
-    url.searchParams.append("keyword", request.selection);
-    fetchQueue.add(url).then(data => console.log("it worked", data));
-  }
+  if (!request.selection) return;
+  const storage = await chrome.storage.sync.get(request.selection);
+  if (storage[request.selection]) return;
+  const data = await lookup(request.selection, fetchQueue);
+  data.selection = request.selection.trim();
+  data.sentence = request.sentence.trim();
+  data.timestamp = Date.now();
+  storeQuery(request.selection, data);
 });
