@@ -71,11 +71,10 @@ function createToast(message, opts = {}) {
         toast.addEventListener('mouseleave', () => {
             if (!removeTimer) {
                 const remaining = (function () {
-                    if (!progress) return 2000; // fallback
+                    if (!progress) return 2000; 
                     const style = getComputedStyle(progress);
                     const dur = parseFloat(style.animationDuration) * 1000 || duration;
                     const playState = style.animationPlayState;
-                    // We can't easily read remaining time; restart with a shorter duration:
                     return Math.max(600, duration * 0.25);
                 })();
                 if (progress) {
